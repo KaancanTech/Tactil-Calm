@@ -1,32 +1,44 @@
 workflows:
-  ios-build:
-    name: iOS Build
-    max_build_duration: 60
+  ios-native-workflow:
+    name: iOS Native
+    max_build_duration: 120
+    instance_type: mac_mini_m1
+    integrations:
+      app_store_connect: Codemagic API Key
     environment:
+      ios_signing:
+        distribution_type: app_store
+        bundle_identifier: com.Tactil-Calm
       vars:
         BUNDLE_ID: "com.Tactil-Calm"
-        XCODE_PROJECT: "TactilCalm.xcodeproj" # Xcode project (не workspace)
-        XCODE_SCHEME: "TactilCalm"            # Имя shared scheme
+        XCODE_PROJECT: "TactilCalm.xcodeproj" # <-- Put the name of your Xcode workspace here
+        XCODE_SCHEME: "TactilCalm" # <-- Put the name of your Xcode scheme here
         APP_STORE_APPLE_ID: 6755437518
       xcode: 16.2
-      flutter: none # если это не Flutter-проект
     scripts:
-      - name: Clean build folder
+      - name: Set up provisioning profiles settings on Xcode project
+        script: xcode-project use-profiles
+      - name: Increment build number
         script: |
-          xcodebuild clean -project $XCODE_PROJECT -scheme $XCODE_SCHEME -configuration Release
-      - name: Build IPA
+          cd $CM_BUILD_DIR
+          LATEST_BUILD_NUMBER=$(app-store-connect get-latest-app-store-build-number "$APP_STORE_APPLE_ID")
+          agvtool new-version -all $(($LATEST_BUILD_NUMBER + 1))
+      - name: Build ipa for distribution
         script: |
-          xcodebuild archive \
-            -project $XCODE_PROJECT \
-            -scheme $XCODE_SCHEME \
-            -configuration Release \
-            -archivePath $CM_BUILD_DIR/build/$XCODE_SCHEME.xcarchive
-      - name: Export IPA
-        script: |
-          xcodebuild -exportArchive \
-            -archivePath $CM_BUILD_DIR/build/$XCODE_SCHEME.xcarchive \
-            -exportPath $CM_BUILD_DIR/build/ipa \
-            -exportOptionsPlist ExportOptions.plist
+          xcode-project build-ipa \
+            --workspace "$CM_BUILD_DIR/$XCODE_WORKSPACE" \
+            --scheme "$XCODE_SCHEME"
     artifacts:
-      - build/ipa/*.ipa
-
+      - build/ios/ipa/*.ipa
+      - /tmp/xcodebuild_logs/*.log
+      - $HOME/Library/Developer/Xcode/DerivedData/**/Build/**/*.app
+      - $HOME/Library/Developer/Xcode/DerivedData/**/Build/**/*.dSYM
+    publishing:
+      app_store_connect:
+        auth: integration
+        # Configuration related to TestFlight (optional)
+        # Note: This action is performed during post-processing.
+        submit_to_testflight: false
+        # Configuration related to App Store (optional)
+        # Note: This action is performed during post-processing.
+        submit_to_app_store: false
