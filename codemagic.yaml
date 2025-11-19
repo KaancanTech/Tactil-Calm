@@ -12,7 +12,7 @@ workflows:
       vars:
         BUNDLE_ID: "com.Tactil-Calm"
         XCODE_WORKSPACE: "TactilCalm.xcodeproj" # <-- Put the name of your Xcode workspace here
-        XCODE_SCHEME: "TactilCalm" # <-- Put the name of your Xcode scheme here
+        XCODE_SCHEME: "Tactil-Calm" # <-- Put the name of your Xcode scheme here
         APP_STORE_APPLE_ID: 6755437518
       xcode: 16.2
     scripts:
