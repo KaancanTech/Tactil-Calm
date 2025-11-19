@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		13A9392EF029E7B080DFAE04 /* Pods_Tactil_Calm.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 070A2AE4785BEB8F625C9EC2 /* Pods_Tactil_Calm.framework */; };
 		8699B58D2ECCC321006EFF73 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8699B5872ECCC321006EFF73 /* Preview Assets.xcassets */; };
 		8699B58E2ECCC321006EFF73 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8699B5892ECCC321006EFF73 /* Assets.xcassets */; };
 		8699B58F2ECCC321006EFF73 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8699B58A2ECCC321006EFF73 /* ContentView.swift */; };
@@ -17,6 +18,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		070A2AE4785BEB8F625C9EC2 /* Pods_Tactil_Calm.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Tactil_Calm.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		1D3B1121F613A7F6BF98E5F9 /* Pods-Tactil-Calm.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Tactil-Calm.release.xcconfig"; path = "Target Support Files/Pods-Tactil-Calm/Pods-Tactil-Calm.release.xcconfig"; sourceTree = "<group>"; };
 		8699B5762ECCC315006EFF73 /* Tactil-Calm.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Tactil-Calm.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8699B5872ECCC321006EFF73 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		8699B5892ECCC321006EFF73 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -25,6 +28,7 @@
 		8699B5912ECCC33C006EFF73 /* HapticManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HapticManager.swift; sourceTree = "<group>"; };
 		8699B5932ECCC6AC006EFF73 /* SliderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SliderView.swift; sourceTree = "<group>"; };
 		8699B5952ECCC6BF006EFF73 /* LockView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LockView.swift; sourceTree = "<group>"; };
+		E1A1C2FA21D00009054CA798 /* Pods-Tactil-Calm.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Tactil-Calm.debug.xcconfig"; path = "Target Support Files/Pods-Tactil-Calm/Pods-Tactil-Calm.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -32,17 +36,38 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				13A9392EF029E7B080DFAE04 /* Pods_Tactil_Calm.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		267981A827671F1464DA1639 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				070A2AE4785BEB8F625C9EC2 /* Pods_Tactil_Calm.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		5B2277FC2571B15C1B4604EE /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				E1A1C2FA21D00009054CA798 /* Pods-Tactil-Calm.debug.xcconfig */,
+				1D3B1121F613A7F6BF98E5F9 /* Pods-Tactil-Calm.release.xcconfig */,
+			);
+			name = Pods;
+			path = Pods;
+			sourceTree = "<group>";
+		};
 		8699B56D2ECCC315006EFF73 = {
 			isa = PBXGroup;
 			children = (
 				8699B58C2ECCC321006EFF73 /* Tactil-Calm */,
 				8699B5772ECCC315006EFF73 /* Products */,
+				5B2277FC2571B15C1B4604EE /* Pods */,
+				267981A827671F1464DA1639 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -83,6 +108,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 8699B5842ECCC317006EFF73 /* Build configuration list for PBXNativeTarget "Tactil-Calm" */;
 			buildPhases = (
+				191A5A1EFFA3A4FA4D186969 /* [CP] Check Pods Manifest.lock */,
 				8699B5722ECCC315006EFF73 /* Sources */,
 				8699B5732ECCC315006EFF73 /* Frameworks */,
 				8699B5742ECCC315006EFF73 /* Resources */,
@@ -92,8 +118,6 @@
 			dependencies = (
 			);
 			name = "Tactil-Calm";
-			packageProductDependencies = (
-			);
 			productName = "Tactil-Calm";
 			productReference = 8699B5762ECCC315006EFF73 /* Tactil-Calm.app */;
 			productType = "com.apple.product-type.application";
@@ -143,6 +167,31 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		191A5A1EFFA3A4FA4D186969 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Tactil-Calm-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		8699B5722ECCC315006EFF73 /* Sources */ = {
@@ -281,6 +330,7 @@
 		};
 		8699B5852ECCC317006EFF73 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = E1A1C2FA21D00009054CA798 /* Pods-Tactil-Calm.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -314,6 +364,7 @@
 		};
 		8699B5862ECCC317006EFF73 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 1D3B1121F613A7F6BF98E5F9 /* Pods-Tactil-Calm.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
