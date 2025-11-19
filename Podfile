@@ -6,5 +6,5 @@ target 'Tactil-Calm' do
   use_frameworks!
 
   # Pods for Tactil-Calm
-   pod 'SnapKit'
+
 end
