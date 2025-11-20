@@ -9,9 +9,9 @@ import Foundation
 import CoreHaptics
 import UIKit
 
-class HapticManager: ObservableObject {
+class HapticManagerFirst: ObservableObject {
     // Синглтон для удобного доступа
-    static let shared = HapticManager()
+    static let shared = HapticManagerFirst()
     
     private var engine: CHHapticEngine?
     

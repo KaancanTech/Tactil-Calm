@@ -96,7 +96,7 @@ struct LockView: View {
             }
         }
         .onAppear {
-            HapticManager.shared.prepareHaptics()
+            HapticManagerFirst.shared.prepareHaptics()
             print("🤫 Псс... секретный код: \(Int(secretSpot))")
         }
     }
@@ -116,12 +116,12 @@ struct LockView: View {
         
         if Int(currentAngle / step) != Int(rotation / step) {
             
-            // Проверка победы (допуск +- 4 градуса)
-            if abs(Double(normalizedAngle) - secretSpot) < 4 {
+            // Проверка победы (допуск +- 2 градуса)
+            if abs(Double(normalizedAngle) - secretSpot) < 2 {
                 unlockSafe()
             } else {
                 // Чем ближе к цели, тем "острее" может быть тик (опционально)
-                HapticManager.shared.playTick()
+                HapticManagerFirst.shared.playTick()
             }
         }
         rotation = currentAngle
@@ -131,7 +131,7 @@ struct LockView: View {
         guard !isUnlocked else { return }
         
         isUnlocked = true
-        HapticManager.shared.playSuccess() // БУМ!
+        HapticManagerFirst.shared.playSuccess() // БУМ!
         print("✅ Сейф открыт!")
         
         // Доворачиваем колесо ровно на секретную точку для красоты

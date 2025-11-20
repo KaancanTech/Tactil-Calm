@@ -7,16 +7,19 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8620EB7D2ECFC053008E4DE8 /* RelaxVibrationScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8620EB7C2ECFC053008E4DE8 /* RelaxVibrationScreen.swift */; };
 		8699B5B72ECDBC9F006EFF73 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8699B5B12ECDBC9F006EFF73 /* Preview Assets.xcassets */; };
 		8699B5B82ECDBC9F006EFF73 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8699B5B32ECDBC9F006EFF73 /* Assets.xcassets */; };
 		8699B5B92ECDBC9F006EFF73 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8699B5B42ECDBC9F006EFF73 /* ContentView.swift */; };
 		8699B5BA2ECDBC9F006EFF73 /* TactilCalmApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8699B5B52ECDBC9F006EFF73 /* TactilCalmApp.swift */; };
 		8699B5BC2ECDBCAC006EFF73 /* LockView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8699B5BB2ECDBCAC006EFF73 /* LockView.swift */; };
 		8699B5BE2ECDBCB8006EFF73 /* SliderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8699B5BD2ECDBCB8006EFF73 /* SliderView.swift */; };
-		8699B5C02ECDBCCB006EFF73 /* HapticManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8699B5BF2ECDBCCB006EFF73 /* HapticManager.swift */; };
+		8699B5C02ECDBCCB006EFF73 /* HapticManagerFirst.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8699B5BF2ECDBCCB006EFF73 /* HapticManagerFirst.swift */; };
+		86DC52712ECF19B300D1A5EF /* EndlessView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86DC52702ECF19B300D1A5EF /* EndlessView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		8620EB7C2ECFC053008E4DE8 /* RelaxVibrationScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RelaxVibrationScreen.swift; sourceTree = "<group>"; };
 		8699B5A02ECDBC6F006EFF73 /* TactilCalm.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TactilCalm.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8699B5B12ECDBC9F006EFF73 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		8699B5B32ECDBC9F006EFF73 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -24,7 +27,8 @@
 		8699B5B52ECDBC9F006EFF73 /* TactilCalmApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TactilCalmApp.swift; sourceTree = "<group>"; };
 		8699B5BB2ECDBCAC006EFF73 /* LockView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LockView.swift; sourceTree = "<group>"; };
 		8699B5BD2ECDBCB8006EFF73 /* SliderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SliderView.swift; sourceTree = "<group>"; };
-		8699B5BF2ECDBCCB006EFF73 /* HapticManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HapticManager.swift; sourceTree = "<group>"; };
+		8699B5BF2ECDBCCB006EFF73 /* HapticManagerFirst.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HapticManagerFirst.swift; sourceTree = "<group>"; };
+		86DC52702ECF19B300D1A5EF /* EndlessView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndlessView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -67,11 +71,13 @@
 			children = (
 				8699B5B22ECDBC9F006EFF73 /* Preview Content */,
 				8699B5B32ECDBC9F006EFF73 /* Assets.xcassets */,
+				8620EB7C2ECFC053008E4DE8 /* RelaxVibrationScreen.swift */,
 				8699B5B52ECDBC9F006EFF73 /* TactilCalmApp.swift */,
 				8699B5B42ECDBC9F006EFF73 /* ContentView.swift */,
 				8699B5BB2ECDBCAC006EFF73 /* LockView.swift */,
 				8699B5BD2ECDBCB8006EFF73 /* SliderView.swift */,
-				8699B5BF2ECDBCCB006EFF73 /* HapticManager.swift */,
+				8699B5BF2ECDBCCB006EFF73 /* HapticManagerFirst.swift */,
+				86DC52702ECF19B300D1A5EF /* EndlessView.swift */,
 			);
 			path = TactilCalm;
 			sourceTree = "<group>";
@@ -150,10 +156,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				8699B5B92ECDBC9F006EFF73 /* ContentView.swift in Sources */,
+				86DC52712ECF19B300D1A5EF /* EndlessView.swift in Sources */,
+				8620EB7D2ECFC053008E4DE8 /* RelaxVibrationScreen.swift in Sources */,
 				8699B5BE2ECDBCB8006EFF73 /* SliderView.swift in Sources */,
 				8699B5BA2ECDBC9F006EFF73 /* TactilCalmApp.swift in Sources */,
 				8699B5BC2ECDBCAC006EFF73 /* LockView.swift in Sources */,
-				8699B5C02ECDBCCB006EFF73 /* HapticManager.swift in Sources */,
+				8699B5C02ECDBCCB006EFF73 /* HapticManagerFirst.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

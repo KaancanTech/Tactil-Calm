@@ -130,7 +130,7 @@ struct MultiSliderView: View {
         if allLocked {
             isLevelComplete = true
             // Используем мощный тик из HapticManager (если он есть)
-            HapticManager.shared.playSuccess()
+            HapticManagerFirst.shared.playSuccess()
         } else {
             isLevelComplete = false
         }
