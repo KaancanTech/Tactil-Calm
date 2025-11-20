@@ -11,7 +11,7 @@ struct EndlessView: View {
     @State private var hapticShapes: [HapticShape] = []
     @State private var lastPlayedShapeId: UUID? = nil // Чтобы не вибрировать постоянно на одной и той же форме
     let images = ["bg1", "bg2", "bg3", "bg4", "bg5", "bg6", "bg7"]
-
+    @State private var particles: [TrailParticle] = []
        // Случайный элемент массива
        var randomImage: String {
            images.randomElement() ?? "bg1"
@@ -50,37 +50,62 @@ struct EndlessView: View {
                     )
                 }
             }.padding(.top, 30)
-            Image(randomImage)
-                            .resizable()
-                            .scaledToFill()
-                            .ignoresSafeArea()
-            
-            
-            // Кнопка перезапуска/генерации новых форм
-            VStack {
-                HStack {
-                    Spacer()
-                    Button(action: {
-                        generateShapes(count: Int.random(in: 10...20))
-                    }) {
-                        Image(systemName: "repeat.circle")
-                            .font(.largeTitle)
-                            .frame(width: 70, height: 70)
-                            .background(Color.gray)
-                            .foregroundColor(.white)
-                            .cornerRadius(10)
+            ZStack {
+                Image(randomImage)
+                    .resizable()
+                    .scaledToFill()
+                    .ignoresSafeArea()
+                
+                SwiftUITrailView(particles: $particles)
+                // СЛОЙ ЖЕСТОВ
+                            Color.clear
+                                .contentShape(Rectangle())
+                                .gesture(
+                                    DragGesture(minimumDistance: 0)
+                                        .onChanged { value in
+                                            // А. Вибрация
+                                            handleTouch(location: value.location)
+                                            
+                                            // Б. Добавляем частицу в хвост
+                                            addParticle(at: value.location)
+                                        }
+                                        .onEnded { _ in
+                                            lastPlayedShapeId = nil
+                                        }
+                                )
+                // Кнопка перезапуска/генерации новых форм
+                VStack {
+                    HStack {
+                        Spacer()
+                        Button(action: {
+                            generateShapes(count: Int.random(in: 10...20))
+                        }) {
+                            Image(systemName: "repeat.circle")
+                                .font(.largeTitle)
+                                .frame(width: 50, height: 50)
+                                .background(Color.gray)
+                                .foregroundColor(.white)
+                                .cornerRadius(10)
+                        }
+                        .padding(.horizontal, 20)
+                        .padding(.top, 30)
                     }
-                    .padding(.horizontal, 20)
-                }
-                Spacer()
+                    Spacer()
+                }.padding(.top, 20)
             }
             
         }
-        .navigationBarTitleDisplayMode(.inline)
     }
     
     // --- ВСПОМОГАТЕЛЬНЫЕ ФУНКЦИИ ---
-    
+    func addParticle(at location: CGPoint) {
+            // Генерируем цвет, зависящий от времени (для радуги) или позиции
+            let hue = Double(particles.count % 20) / 20.0
+            let color = Color(hue: hue, saturation: 1.0, brightness: 1.0)
+            
+            let newParticle = TrailParticle(position: location, color: color)
+            particles.append(newParticle)
+        }
     // 1. ГЕНЕРАЦИЯ ФОРМ
     func generateShapes(count: Int) {
         var newShapes: [HapticShape] = []
@@ -261,6 +286,76 @@ class HapticManager: ObservableObject {
             try player?.start(atTime: 0)
         } catch {
             print("Failed to play custom haptic: \(error)")
+        }
+    }
+}
+
+import SwiftUI
+
+struct TrailParticle: Identifiable {
+    let id = UUID()
+    var position: CGPoint
+    var creationDate = Date()
+    var color: Color
+}
+
+struct SwiftUITrailView: View {
+    // Принимаем массив частиц от родителя
+    @Binding var particles: [TrailParticle]
+    
+    var body: some View {
+        TimelineView(.animation) { timeline in
+            Canvas { context, size in
+                let now = timeline.date
+                
+                // Перебираем все частицы
+                for particle in particles {
+                    // Сколько времени прошло с момента создания частицы?
+                    let timeAlive = now.timeIntervalSince(particle.creationDate)
+                    let lifeTime: TimeInterval = 0.5 // Хвост живет 0.5 секунды
+                    
+                    // Если время жизни вышло — не рисуем (или рисуем с 0 прозрачностью)
+                    if timeAlive < lifeTime {
+                        
+                        // Вычисляем прозрачность (от 1.0 до 0.0)
+                        let fade = 1.0 - (timeAlive / lifeTime)
+                        
+                        // Вычисляем размер (уменьшается к концу)
+                        let size = 20.0 * fade
+                        
+                        // Рисуем круг
+                        var path = Path()
+                        path.addEllipse(in: CGRect(
+                            x: particle.position.x - size/2,
+                            y: particle.position.y - size/2,
+                            width: size,
+                            height: size
+                        ))
+                        
+                        // Добавляем эффект свечения
+                        context.addFilter(.blur(radius: 3))
+                        
+                        context.fill(
+                            path,
+                            with: .color(particle.color.opacity(fade))
+                        )
+                    }
+                }
+            }
+            // Важный момент: удаляем старые частицы из массива, чтобы не забить память
+            .onChange(of: timeline.date) { newDate in
+                cleanUpParticles(currentTime: newDate)
+            }
+        }
+        .ignoresSafeArea()
+        .allowsHitTesting(false) // Пропускаем касания
+    }
+    
+    func cleanUpParticles(currentTime: Date) {
+        // Удаляем частицы, которые старше 0.6 секунды
+        // (чуть больше lifeTime, чтобы они успели исчезнуть визуально)
+        if particles.count > 100 { // Оптимизация: чистим только если их много
+             particles.removeAll(where: { currentTime.timeIntervalSince($0.creationDate) > 0.6 })
         }
     }
 }
