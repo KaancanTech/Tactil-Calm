@@ -19,46 +19,45 @@ struct ContentView: View {
                         // --- СТИЛЬНЫЙ ЗАГОЛОВОК ---
                         VStack {
                             Image(systemName: "lock.shield.fill") // Системная иконка
-                                .font(.system(size: 50, weight: .ultraLight))
+                                .font(.system(size: 40, weight: .ultraLight))
                                 .symbolRenderingMode(.palette)
                                 .foregroundStyle(Color.orange, Color.green) // Двухцветный символ
                                 .padding(.bottom, 5)
                             
                             Text("TACTIL-CALM")
-                                .font(.system(size: 50, weight: .bold))
+                                .font(.system(size: 40, weight: .bold))
                                 .foregroundColor(.white)
                                 .shadow(color: .gray, radius: 3)
                         }
                         .padding(.bottom, 20)
                         
                         // --- КНОПКИ ПЕРЕХОДА ---
-                        VStack(spacing: 50) {
+                        VStack(spacing: 30) {
                             NavigationLink(destination: EndlessView()) {
                                 Text("Endless🧬")
-                                    .font(.system(size: 26, weight: .medium))
+                                    .font(.system(size: 24, weight: .medium))
                             }.buttonStyle(GlowingButtonStyle(glowColor: .pink))
                             // Кнопка 1: СЕЙФ (ОРАНЖЕВОЕ СВЕЧЕНИЕ)
                             NavigationLink(destination: LockView()) {
                                 Text("Unlock Safe 🔒")
-                                    .font(.system(size: 26, weight: .medium))
+                                    .font(.system(size: 24, weight: .medium))
                             }
                             .buttonStyle(GlowingButtonStyle(glowColor: .orange))
                             
                             // Кнопка 2: МАТРИЦА (ЗЕЛЕНОЕ СВЕЧЕНИЕ)
                             NavigationLink(destination: MultiSliderView()) {
                                 Text("Coincidence Matrix 📊")
-                                    .font(.system(size: 26, weight: .medium))
+                                    .font(.system(size: 24, weight: .medium))
                             }
                             .buttonStyle(GlowingButtonStyle(glowColor: .green))
                             NavigationLink(destination: RelaxVibrationScreen()) {
                                 Text("Relax Patterns 🧿")
-                                    .font(.system(size: 26, weight: .medium))
+                                    .font(.system(size: 24, weight: .medium))
                             }
                             .buttonStyle(GlowingButtonStyle(glowColor: .blue))
                         }
                         .padding(.horizontal, 30)
-                    }
-                    .navigationTitle("") // Скрываем стандартный заголовок
+                    }.padding(.bottom, 40)
                 }
             }
         }

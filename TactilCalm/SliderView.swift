@@ -48,8 +48,10 @@ struct MultiSliderView: View {
                         .padding(.horizontal)
                         // Логика проверки при изменении значения
                         .onChange(of: slider.currentValue) { newValue in
+                            playRandomHaptic()
                             checkSliderLock(for: slider.id, newValue: newValue)
                         }
+
                     }
                 }.padding()
                 
@@ -135,7 +137,14 @@ struct MultiSliderView: View {
             isLevelComplete = false
         }
     }
-    
+    func playRandomHaptic() {
+        let styles: [UIImpactFeedbackGenerator.FeedbackStyle] = [.light, .medium, .heavy, .rigid, .soft]
+        let randomStyle = styles.randomElement()!
+        
+        let generator = UIImpactFeedbackGenerator(style: randomStyle)
+        generator.impactOccurred()
+    }
+
     // 4. ПЕРЕЗАПУСК
     func resetLevel() {
         withAnimation {

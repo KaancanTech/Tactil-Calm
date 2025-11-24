@@ -57,7 +57,6 @@ struct EndlessView: View {
                     .ignoresSafeArea()
                 
                 SwiftUITrailView(particles: $particles)
-                // СЛОЙ ЖЕСТОВ
                             Color.clear
                                 .contentShape(Rectangle())
                                 .gesture(
